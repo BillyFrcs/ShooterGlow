@@ -1,6 +1,6 @@
 <h1 align="center">Shooter Glow</h1>
 
-![]()
+![](https://github.com/BillyFrcs/ShooterGlow/blob/master/Assets/Gif/Shooter%20Glow.gif)
 
 Simple 2D top down Shooter Game, **Shooter Glow** with beautiful color and glowing effect to improve Gameplay experience.
 

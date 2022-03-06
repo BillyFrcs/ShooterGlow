@@ -24,9 +24,6 @@ namespace Enemy
 
         private bool _isMove;
 
-        // [SerializeField] private PostProcessVolume _PostProcessingVolume;
-        // private Bloom _BloomEffect;
-
         // Start is called before the first frame update
         private void Start()
         {

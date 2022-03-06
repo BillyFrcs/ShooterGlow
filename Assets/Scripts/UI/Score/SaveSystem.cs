@@ -83,7 +83,7 @@ namespace UI.Score
             
                 foreach (var highScore in playerHighScore)
                 {
-                    highScore.SetText(Convert.ToString(scoreGame.highScore));
+                    highScore.SetText(String.Concat($"High Score {Convert.ToString(scoreGame.highScore)}"));
                 }
             }
         }

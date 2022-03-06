@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Bullets;
+using Enemy;
 using Player.InputSystem;
 using Tags;
 using UI;
@@ -115,7 +116,7 @@ namespace Player
             {
                 _isShootPressed = shootContext.ReadValueAsButton();
                     
-                Debug.Log(shootContext); // DEBUG
+                // Debug.Log(shootContext); // DEBUG
             }
         }
 
@@ -203,6 +204,8 @@ namespace Player
                 Destroy(this.gameObject);
                 
                 GameOver.Instance.DisplayGameOver();
+
+                EnemySpawner.Instance.SpawnEnemies = true;
             }
             
             Physics.IgnoreLayerCollision(6, 7, true);

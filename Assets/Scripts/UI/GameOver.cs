@@ -40,6 +40,10 @@ namespace UI
             _PlayerInputSystemController.Menu.Disable();
         }
 
+        /// <summary>
+        /// Quit game input action callback
+        /// </summary>
+        /// <param name="quitGameContext">InputAction.CallbackContext</param>
         public void OnQuitGame(InputAction.CallbackContext quitGameContext)
         {
             if (quitGameContext.performed)

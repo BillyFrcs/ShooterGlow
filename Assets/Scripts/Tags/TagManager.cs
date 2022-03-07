@@ -10,6 +10,5 @@ namespace Tags
         public const String Collision = "Collision";
         public const String Bullet = "Bullet";
         public const String Enemy = "Enemy";
-        public const String Player = "Player";
     }
 }

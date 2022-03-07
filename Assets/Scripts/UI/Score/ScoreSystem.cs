@@ -15,10 +15,10 @@ namespace UI.Score
 
         public void SaveHighScoreGame();
         public void LoadHighScoreGame();
-        public void ResetHighScoreGame();
+        public void ResetScoreGame();
     }
 
-    public enum ResetScore
+    public enum Reset
     {
         Score = 0
     }
@@ -47,12 +47,6 @@ namespace UI.Score
             }
         }
 
-        // Start is called before the first frame update
-        private void Start()
-        {
-            LoadHighScoreGame();
-        }
-        
         // Update is called once per frame
         private void Update()
         {
@@ -78,6 +72,8 @@ namespace UI.Score
         public void SaveHighScoreGame()
         {
             SaveSystem.SaveData(this, KEY, _HighScore);
+            
+            // Debug.Log("Save"); // DEBUG
         }
         
         /// <summary>
@@ -86,14 +82,18 @@ namespace UI.Score
         public void LoadHighScoreGame()
         {
             SaveSystem.LoadData(this, KEY, _HighScore);
+            
+            // Debug.Log("Load"); // DEBUG
         }
 
         /// <summary>
-        /// Reset score system when restart the game
+        /// Reset the current player score when restart the game
         /// </summary>
-        public void ResetHighScoreGame()
+        public void ResetScoreGame()
         {
-            SaveSystem.DeleteData(this, KEY, _HighScore);
+            score = (int) Reset.Score;
+            
+            // SaveSystem.DeleteData(this, KEY, _HighScore);
         }
     }
 }

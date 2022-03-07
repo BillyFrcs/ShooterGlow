@@ -76,6 +76,8 @@ namespace UI
             // Save & load high score player
             ScoreSystem.Instance.SaveHighScoreGame();
             ScoreSystem.Instance.LoadHighScoreGame();
+            
+            ScoreSystem.Instance.ResetScoreGame();
         }
 
         /// <summary>

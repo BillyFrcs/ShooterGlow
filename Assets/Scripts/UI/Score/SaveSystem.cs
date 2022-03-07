@@ -26,9 +26,9 @@ namespace UI.Score
                 {
                     PlayerPrefs.SetInt("High Score", scoreGame.score);
 
-                    foreach (TextMeshProUGUI HighScore in playerHighScore)
+                    foreach (TextMeshProUGUI highScore in playerHighScore)
                     {
-                        HighScore.SetText(String.Concat($"High Score {Convert.ToString(scoreGame.highScore)}"));
+                        highScore.SetText(String.Concat($"High Score {Convert.ToString(scoreGame.highScore)}"));
                     }
                 }
             }
@@ -79,7 +79,7 @@ namespace UI.Score
             {
                 PlayerPrefs.DeleteKey("High Score");
                 
-                scoreGame.highScore = Convert.ToInt32(ResetScore.Score);
+                scoreGame.highScore = Convert.ToInt32(Reset.Score);
             
                 foreach (var highScore in playerHighScore)
                 {

@@ -14,8 +14,6 @@ namespace UI
         
         [SerializeField] private List<GameObject> _UIGameplay = new List<GameObject>();
 
-        private System.Boolean _isQuitButtonPressed;
-
         private PlayerInputSystemController _PlayerInputSystemController;
         
         public static GameOver Instance;

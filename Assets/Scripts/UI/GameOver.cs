@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Player.InputSystem;
 using UI.Score;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace UI
 {
-    public class GameOver : MonoBehaviour
+    public class GameOver : MonoBehaviour, PlayerInputSystemController.IMenuActions
     {
         [SerializeField] private GameObject[] _GameOver;
         
         [SerializeField] private List<GameObject> _UIGameplay = new List<GameObject>();
+
+        private System.Boolean _isQuitButtonPressed;
+
+        private PlayerInputSystemController _PlayerInputSystemController;
         
         public static GameOver Instance;
 
@@ -20,18 +26,30 @@ namespace UI
             {
                 Instance = this;
             }
+
+            _PlayerInputSystemController = new PlayerInputSystemController();
+
+            _PlayerInputSystemController.Menu.QuitGame.performed += OnQuitGame;
         }
 
-        // Start is called before the first frame update
-        private void Start()
+        private void OnEnable()
         {
-
+            _PlayerInputSystemController.Menu.Enable();
         }
 
-        // Update is called once per frame
-        private void Update()
+        private void OnDisable()
         {
+            _PlayerInputSystemController.Menu.Disable();
+        }
 
+        public void OnQuitGame(InputAction.CallbackContext quitGameContext)
+        {
+            if (quitGameContext.performed)
+            {
+                Application.Quit();
+                
+                // Debug.LogAssertionFormat("Quit Game! " + quitGameContext.action); // DEBUG ASSERTION FORMAT
+            }
         }
 
         /// <summary>

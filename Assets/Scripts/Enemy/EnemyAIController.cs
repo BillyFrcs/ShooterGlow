@@ -24,6 +24,16 @@ namespace Enemy
 
         private bool _isMove;
 
+        public static EnemyAIController Instance;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+        }
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -37,13 +47,7 @@ namespace Enemy
             GenerateRandomSizeObject();
         }
 
-        // Update is called once per frame
-       private void Update()
-       {
-
-       }
-
-       private void FixedUpdate()
+        private void FixedUpdate()
        {
            if (PlayerController.Instance != null)
            {
@@ -97,6 +101,21 @@ namespace Enemy
            }
            
            Physics.IgnoreLayerCollision(2, 3, true);
+       }
+
+       /// <summary>
+       /// Get enemy movement
+       /// </summary>
+       public Boolean EnemyMove
+       {
+           get
+           {
+               return _isMove;
+           }
+           set
+           {
+               _isMove = value;
+           }
        }
     }
 }

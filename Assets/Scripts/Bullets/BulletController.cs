@@ -42,7 +42,12 @@ namespace Bullets
             }
         }
 
-        public void ShootBullet(GameObject[] bullet, Transform shootPoint)
+        /// <summary>
+        /// Shoot projectile bullet
+        /// </summary>
+        /// <param name="bullet"></param>
+        /// <param name="shootPoint"></param>
+        public static void ShootBullet(GameObject[] bullet, Transform shootPoint)
         {
             foreach (GameObject newBullet in bullet)
             {

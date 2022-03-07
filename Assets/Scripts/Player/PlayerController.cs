@@ -7,6 +7,7 @@ using Enemy;
 using Player.InputSystem;
 using Tags;
 using UI;
+using UI.Score;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,10 +26,8 @@ namespace Player
 
         [Header("Bullet Controller")] 
         [Tooltip("Spawn Bullet Prefabs")] [SerializeField] private GameObject[] _Bullet;
-
-        [Tooltip("Reference Bullet Object")] [SerializeField] private BulletController _PlayerBullet;
         
-        [SerializeField] private Transform _ShootPoint;
+        [Tooltip("Shoot Point Position")] [SerializeField] private Transform _ShootPoint;
         
         private bool _canShoot;
         private bool _isShootPressed;
@@ -152,7 +151,7 @@ namespace Player
                 {
                     _fireTime = Time.time + _fireRate;
 
-                    _PlayerBullet.ShootBullet(_Bullet, _ShootPoint);
+                    BulletController.ShootBullet(_Bullet, _ShootPoint);
                 }
             }
         }
@@ -202,8 +201,10 @@ namespace Player
             if (collision.gameObject.CompareTag(TagManager.Collision) || collision.gameObject.CompareTag(TagManager.Enemy))
             {
                 Destroy(this.gameObject);
-                
+
                 GameOver.Instance.DisplayGameOver();
+
+                EnemyAIController.Instance.EnemyMove = false;
 
                 EnemySpawner.Instance.SpawnEnemies = true;
             }

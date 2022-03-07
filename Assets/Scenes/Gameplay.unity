@@ -6678,7 +6678,6 @@ MonoBehaviour:
   _movementSpeed: 5
   _Bullet:
   - {fileID: 5968493568995584832, guid: 31a745d2259a1ac4ab594567bf1d941a, type: 3}
-  _PlayerBullet: {fileID: 9013513286147104430, guid: 31a745d2259a1ac4ab594567bf1d941a, type: 3}
   _ShootPoint: {fileID: 54880584}
 --- !u!212 &1668188173
 SpriteRenderer:
@@ -6971,12 +6970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4cd489dc2ffb7e42a1e35ad31733fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Score:
-  - {fileID: 487859594}
-  score: 0
-  _HighScore:
-  - {fileID: 1380484635}
-  highScore: 0
+  _Score: {fileID: 487859594}
+  _HighScore: {fileID: 1380484635}
 --- !u!1 &1821193709
 GameObject:
   m_ObjectHideFlags: 0

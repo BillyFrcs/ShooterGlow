@@ -83,7 +83,10 @@ namespace Player
         {
             _PlayerInputSystemController.Player.Disable();
         }
-
+        
+        /// <summary>
+        /// Initialize the new player input system action callback
+        /// </summary>
         private void PlayerInputSystemActionCallback()
         {
             // Movement input action
@@ -96,6 +99,10 @@ namespace Player
             _PlayerInputSystemController.Player.Shoot.canceled += OnShoot;
         }
 
+        /// <summary>
+        /// Player movement input action callback
+        /// </summary>
+        /// <param name="movementContext">InputAction.CallbackContext</param>
         public void OnMovement(InputAction.CallbackContext movementContext)
         {
             if (_isMove)
@@ -109,6 +116,10 @@ namespace Player
             }
         }
 
+        /// <summary>
+        /// Player shoot input action callback
+        /// </summary>
+        /// <param name="shootContext">InputAction.CallbackContext</param>
         public void OnShoot(InputAction.CallbackContext shootContext)
         {
             if (_canShoot)
@@ -119,6 +130,9 @@ namespace Player
             }
         }
 
+        /// <summary>
+        /// Player movement controller
+        /// </summary>
         private void PlayerMovement()
         {
             if (_isMovementPressed)

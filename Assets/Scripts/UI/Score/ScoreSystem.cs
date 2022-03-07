@@ -20,7 +20,7 @@ namespace UI.Score
 
     public enum ResetScore
     {
-        SCORE = 0
+        Score = 0
     }
 
     public class ScoreSystem : MonoBehaviour, IScoreSystem
@@ -34,6 +34,8 @@ namespace UI.Score
         [Tooltip("High Score Text Reference")] [SerializeField] private TextMeshProUGUI[] _HighScore;
 
         [HideInInspector] public int highScore;
+
+        private const string KEY = "High Score";
         
         public static ScoreSystem Instance;
 
@@ -55,9 +57,9 @@ namespace UI.Score
         private void Update()
         {
             // Update score game
-            foreach (TextMeshProUGUI Score in _Score)
+            foreach (TextMeshProUGUI scoreGame in _Score)
             {
-                Score.SetText(String.Concat($"Score: {Convert.ToString(score)}"));
+                scoreGame.SetText(String.Concat($"Score: {Convert.ToString(score)}"));
             }
         }
 
@@ -75,7 +77,7 @@ namespace UI.Score
         /// </summary>
         public void SaveHighScoreGame()
         {
-            SaveSystem.SaveData(this, "High Score", _HighScore);
+            SaveSystem.SaveData(this, KEY, _HighScore);
         }
         
         /// <summary>
@@ -83,7 +85,7 @@ namespace UI.Score
         /// </summary>
         public void LoadHighScoreGame()
         {
-            SaveSystem.LoadData(this, "High Score", _HighScore);
+            SaveSystem.LoadData(this, KEY, _HighScore);
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace UI.Score
         /// </summary>
         public void ResetHighScoreGame()
         {
-            SaveSystem.DeleteData(this, "High Score", _HighScore);
+            SaveSystem.DeleteData(this, KEY, _HighScore);
         }
     }
 }

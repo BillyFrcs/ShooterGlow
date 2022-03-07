@@ -79,7 +79,7 @@ namespace UI.Score
             {
                 PlayerPrefs.DeleteKey("High Score");
                 
-                scoreGame.highScore = Convert.ToInt32(ResetScore.SCORE);
+                scoreGame.highScore = Convert.ToInt32(ResetScore.Score);
             
                 foreach (var highScore in playerHighScore)
                 {

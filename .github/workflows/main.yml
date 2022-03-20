@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - ShooterGlow/ProjectSettings/ProjectVersion.txt
+          - D:\GameDev\ShooterGlow/ProjectSettings/ProjectVersion.txt
         testMode:
           - playmode
           - editmode

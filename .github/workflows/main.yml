@@ -9,8 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        projectPath:
-          - D:\GameDev\ShooterGlow\ProjectSettings\ProjectVersion.txt
+        projectPath: D:\GameDev\ShooterGlow\ProjectSettings\ProjectVersion.txt
         testMode:
           - playmode
           - editmode

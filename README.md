@@ -7,5 +7,5 @@ Simple 2D top down Shooter Game, **Shooter Glow** with beautiful color and glowi
 ## Usage 
 This project is using the **Universal Render Pipeline** template to create high quality graphics and lightly Games. And using the **Post Processing** to create simple glow effects with Bloom Post Processing effects.
 
-## Platforms
+## Platform
 This Game is only available on Windows64, download the new Release from [here](https://github.com/BillyFrcs/ShooterGlow/releases/tag/v0.1).

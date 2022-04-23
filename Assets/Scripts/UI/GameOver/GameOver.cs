@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace UI
+namespace UI.GameOver
 {
-    public class GameOver : MonoBehaviour, PlayerInputSystemController.IMenuActions
+    public class GameOver : MonoBehaviour
     {
         [SerializeField] private GameObject[] _GameOver;
         
@@ -44,7 +44,7 @@ namespace UI
         /// Quit game input action callback
         /// </summary>
         /// <param name="quitGameContext">InputAction.CallbackContext</param>
-        public void OnQuitGame(InputAction.CallbackContext quitGameContext)
+        private static void OnQuitGame(InputAction.CallbackContext quitGameContext)
         {
             if (quitGameContext.performed)
             {

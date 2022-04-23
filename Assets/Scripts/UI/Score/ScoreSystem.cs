@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BayatGames.SaveGameFree;
 using Player;
 using UnityEngine;
 using TMPro;
@@ -11,7 +12,7 @@ namespace UI.Score
 {
     public interface IScoreSystem
     {
-        public int IncreaseScorePlayer();
+        public int IncreaseScorePlayer(in int score);
 
         public void SaveHighScoreGame();
         public void LoadHighScoreGame();
@@ -30,12 +31,16 @@ namespace UI.Score
 
         [HideInInspector] public int score;
         
-        [Header("High Score")] 
+        [Header("Player Score")]
+        [Tooltip("Player Score Text Reference")] [SerializeField] private TextMeshProUGUI[] _PlayerScore;
+        
+        [Header("High Score")]
         [Tooltip("High Score Text Reference")] [SerializeField] private TextMeshProUGUI[] _HighScore;
 
         [HideInInspector] public int highScore;
 
-        private const string KEY = "High Score";
+        private const string IDENTIFIER = "High Score";
+        private const string KEY = "Player Score";
         
         public static ScoreSystem Instance;
 
@@ -56,14 +61,15 @@ namespace UI.Score
                 scoreGame.SetText(String.Concat($"Score: {Convert.ToString(score)}"));
             }
         }
-
+        
         /// <summary>
         /// Increase score game 
         /// </summary>
+        /// <param name="score"></param>
         /// <returns>int</returns>
-        public int IncreaseScorePlayer()
+        public int IncreaseScorePlayer(in int score)
         {
-            return score += 10;
+            return this.score += score;
         }
 
         /// <summary>
@@ -71,8 +77,9 @@ namespace UI.Score
         /// </summary>
         public void SaveHighScoreGame()
         {
+            SaveSystem.SaveData(this, IDENTIFIER, _PlayerScore, true);
             SaveSystem.SaveData(this, KEY, _HighScore);
-            
+
             // Debug.Log("Save"); // DEBUG
         }
         
@@ -81,8 +88,9 @@ namespace UI.Score
         /// </summary>
         public void LoadHighScoreGame()
         {
+            SaveSystem.LoadData(this, IDENTIFIER, _PlayerScore, true);
             SaveSystem.LoadData(this, KEY, _HighScore);
-            
+
             // Debug.Log("Load"); // DEBUG
         }
 
@@ -92,8 +100,12 @@ namespace UI.Score
         public void ResetScoreGame()
         {
             score = (int) Reset.Score;
-            
-            // SaveSystem.DeleteData(this, KEY, _HighScore);
+        }
+
+        public void DeleteScoreGame()
+        {
+            SaveSystem.DeleteData(this, IDENTIFIER, _PlayerScore, true);
+            SaveSystem.DeleteData(this, KEY, _HighScore);
         }
     }
 }

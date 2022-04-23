@@ -153,6 +153,15 @@
             "id": "e47f1772-4773-4983-9c96-e0c3743a8dee",
             "actions": [
                 {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "d4946ae1-5aa7-4ded-8d52-22e64d1935e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "QuitGame",
                     "type": "Button",
                     "id": "944d8216-95ad-439b-92dd-05e7bf5700ec",
@@ -163,6 +172,17 @@
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "697c27ea-aa90-477c-9503-22cd30588237",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "",
                     "id": "5e3df5b3-1a8b-4486-aa66-c26e021535cc",

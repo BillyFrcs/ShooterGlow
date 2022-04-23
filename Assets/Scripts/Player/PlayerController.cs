@@ -7,6 +7,7 @@ using Enemy;
 using Player.InputSystem;
 using Tags;
 using UI;
+using UI.GameOver;
 using UI.Score;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -97,7 +97,7 @@ namespace Enemy
 
            if (collision.gameObject.CompareTag(TagManager.Bullet) == true)
            {
-               ScoreSystem.Instance.IncreaseScorePlayer();
+               ScoreSystem.Instance.IncreaseScorePlayer(10);
            }
            
            Physics.IgnoreLayerCollision(2, 3, true);

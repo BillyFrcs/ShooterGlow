@@ -177,6 +177,15 @@ namespace Player.InputSystem
             ""id"": ""e47f1772-4773-4983-9c96-e0c3743a8dee"",
             ""actions"": [
                 {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4946ae1-5aa7-4ded-8d52-22e64d1935e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""QuitGame"",
                     ""type"": ""Button"",
                     ""id"": ""944d8216-95ad-439b-92dd-05e7bf5700ec"",
@@ -187,6 +196,17 @@ namespace Player.InputSystem
                 }
             ],
             ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""697c27ea-aa90-477c-9503-22cd30588237"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
                 {
                     ""name"": """",
                     ""id"": ""5e3df5b3-1a8b-4486-aa66-c26e021535cc"",
@@ -209,6 +229,7 @@ namespace Player.InputSystem
             m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+            m_Menu_PauseGame = m_Menu.FindAction("PauseGame", throwIfNotFound: true);
             m_Menu_QuitGame = m_Menu.FindAction("QuitGame", throwIfNotFound: true);
         }
 
@@ -310,11 +331,13 @@ namespace Player.InputSystem
         // Menu
         private readonly InputActionMap m_Menu;
         private IMenuActions m_MenuActionsCallbackInterface;
+        private readonly InputAction m_Menu_PauseGame;
         private readonly InputAction m_Menu_QuitGame;
         public struct MenuActions
         {
             private @PlayerInputSystemController m_Wrapper;
             public MenuActions(@PlayerInputSystemController wrapper) { m_Wrapper = wrapper; }
+            public InputAction @PauseGame => m_Wrapper.m_Menu_PauseGame;
             public InputAction @QuitGame => m_Wrapper.m_Menu_QuitGame;
             public InputActionMap Get() { return m_Wrapper.m_Menu; }
             public void Enable() { Get().Enable(); }
@@ -325,6 +348,9 @@ namespace Player.InputSystem
             {
                 if (m_Wrapper.m_MenuActionsCallbackInterface != null)
                 {
+                    @PauseGame.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnPauseGame;
+                    @PauseGame.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnPauseGame;
+                    @PauseGame.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnPauseGame;
                     @QuitGame.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnQuitGame;
                     @QuitGame.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnQuitGame;
                     @QuitGame.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnQuitGame;
@@ -332,6 +358,9 @@ namespace Player.InputSystem
                 m_Wrapper.m_MenuActionsCallbackInterface = instance;
                 if (instance != null)
                 {
+                    @PauseGame.started += instance.OnPauseGame;
+                    @PauseGame.performed += instance.OnPauseGame;
+                    @PauseGame.canceled += instance.OnPauseGame;
                     @QuitGame.started += instance.OnQuitGame;
                     @QuitGame.performed += instance.OnQuitGame;
                     @QuitGame.canceled += instance.OnQuitGame;
@@ -346,6 +375,7 @@ namespace Player.InputSystem
         }
         public interface IMenuActions
         {
+            void OnPauseGame(InputAction.CallbackContext context);
             void OnQuitGame(InputAction.CallbackContext context);
         }
     }

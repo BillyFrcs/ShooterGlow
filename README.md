@@ -12,5 +12,5 @@ This Game is only available on Windows64, download the latest version from [here
 
 <details>
 <summary>⚠️ Note</summary>
-Currently the Game is just a Prototype.
+Currently the Game is just a Prototype, but you can still play the Game either.
 </details>

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player.InputSystem;
+using UI.Score;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +16,8 @@ namespace UI.PauseGame
 
         [SerializeField] private List<GameObject> _UIGameplay = new List<GameObject>();
 
+        private bool _isGamePaused;
+        
         private void Awake()
         {
             _PlayerInputSystemController = new PlayerInputSystemController();
@@ -30,17 +34,21 @@ namespace UI.PauseGame
         {
             _PlayerInputSystemController.Menu.Disable();
         }
-        
-        // Start is called before the first frame update
-        private void Start()
-        {
-
-        }
 
         // Update is called once per frame
         private void Update()
         {
-
+            if (!Input.GetKeyDown(KeyCode.Escape)) 
+                return;
+            
+            if (!_isGamePaused)
+            {
+                PauseGameplay();
+            }
+            else
+            {
+                ContinueGame();
+            }
         }
         
         /// <summary>
@@ -56,10 +64,12 @@ namespace UI.PauseGame
                 // Debug.LogAssertionFormat("Pause Game! " + pauseGameContext.action); // DEBUG ASSERTION FORMAT
             }
         }
-
+        
         private void PauseGameplay()
         {
             Time.timeScale = 0f;
+            
+            ScoreSystem.Instance.LoadHighScoreGame();
             
             GamePausedUI(true);
             OnGameUI(false);

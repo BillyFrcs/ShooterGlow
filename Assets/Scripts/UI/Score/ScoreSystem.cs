@@ -65,11 +65,11 @@ namespace UI.Score
         /// <summary>
         /// Increase score game 
         /// </summary>
-        /// <param name="score"></param>
+        /// <param name="newScore"></param>
         /// <returns>int</returns>
-        public int IncreaseScorePlayer(in int score)
+        public int IncreaseScorePlayer(in int newScore)
         {
-            return this.score += score;
+            return this.score += newScore;
         }
 
         /// <summary>
